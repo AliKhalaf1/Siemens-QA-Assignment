@@ -1,0 +1,22 @@
+{
+  "test_cases": [
+    {
+      "byte_index": 2,
+      "byte_value": "FF",
+      "calculated_crc": "ABcDEF01",
+      "expected_output": "FFFFEF01"
+    },
+    {
+      "byte_index": "a",
+      "byte_value": "00",
+      "calculated_crc": "1234g678",
+      "expected_output": "12340078"
+    },
+    {
+      "byte_index": 3,
+      "byte_value": "AA",
+      "calculated_crc": "FEDCBA09",
+      "expected_output": "FEDCBA09"
+    }
+  ]
+}
