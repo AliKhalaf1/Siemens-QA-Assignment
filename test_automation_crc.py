@@ -11,13 +11,12 @@ logging.basicConfig(
 
 
 def validate_inputs(byte_index, byte_value, crc):
-    if (
-        byte_index < 0
-        or byte_index > 5
-        or byte_value < 0
-        or byte_value > 0xFF
-        or crc < 0
-        or crc > 0xFFFFFFFF
+    if any(
+        [
+            byte_index < 0 < 5,
+            byte_value < 0 < 0xFF,
+            crc < 0 < 0xFFFFFFFF,
+        ]
     ):
         raise ValueError("Invalid input")
 
@@ -61,14 +60,14 @@ with open("test_cases.json") as file:
             )
 
             # Log the test case details and the result
-            logging.info(f"   Byte Index: {byte_index}")
-            logging.info(f"   Byte Value: {hex(byte_value)[2:].upper()}")
-            logging.info(f"   Calculated CRC: {hex(crc)[2:].upper()}")
-            logging.info(f"   Expected Output: {expected_output}")
-            logging.info(f"   Actual Output: {recalculated_crc}")
+            logging.info(f"\tByte Index: {byte_index}")
+            logging.info(f"\tByte Value: {hex(byte_value)[2:].upper()}")
+            logging.info(f"\tCalculated CRC: {hex(crc)[2:].upper()}")
+            logging.info(f"\tExpected Output: {expected_output}")
+            logging.info(f"\tActual Output: {recalculated_crc}")
             if recalculated_crc == expected_output:
-                logging.info("   Status: Passed")
+                logging.info("\tStatus: Passed")
             else:
-                logging.error("   Status: Failed")
+                logging.warning("\tStatus: Failed")
         except ValueError as e:
-            logging.warning(f"Invalid Input: {e}")
+            logging.error(f"Invalid Input: {e}")
