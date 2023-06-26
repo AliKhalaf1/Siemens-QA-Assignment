@@ -2,14 +2,14 @@
   "test_cases": [
     {
       "byte_index": 2,
-      "byte_value": "FF",
-      "calculated_crc": "ABcDEF01",
-      "expected_output": "FFFFEF01"
+      "byte_value": "33",
+      "calculated_crc": "AA11BB22",
+      "expected_output": "3333BB22"
     },
     {
-      "byte_index": "a",
+      "byte_index": 4,
       "byte_value": "00",
-      "calculated_crc": "1234g678",
+      "calculated_crc": "ABCDEF01",
       "expected_output": "12340078"
     },
     {
