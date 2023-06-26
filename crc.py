@@ -34,22 +34,12 @@ parser.add_argument(
     help="Calculated CRC value in hexadecimal format",
 )
 args = parser.parse_args()
+
 # call the function
-if (
-    args.byte_index < 0
-    or args.byte_value < 0
-    or args.calculated_crc < 0
-    or args.byte_index > 5
-    or args.calculated_crc > 0xFFFFFFFF
-    or args.byte_value > 0xFF
-):
+recalculated_crc = inject_crc_error(
+    args.byte_index, args.byte_value, args.calculated_crc
+)
+if recalculated_crc is None:
     print("Invalid Input")
 else:
-    # call the function
-    recalculated_crc = inject_crc_error(
-        args.byte_index, args.byte_value, args.calculated_crc
-    )
-    if recalculated_crc is None:
-        print("Invalid Input")
-    else:
-        print(format(recalculated_crc, "08X"))
+    print(format(recalculated_crc, "08X"))
